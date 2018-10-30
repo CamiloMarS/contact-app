@@ -1,0 +1,27 @@
+.contact {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background: #72bdff;
+}
+
+.initialName {
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  background: orange;
+  margin: 0 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: none;
+  font-weight: bolder;
+}
+
+.contactData {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  color: #fff;
+}
