@@ -1,4 +1,6 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
+
 import "./Contact.css";
 
 //Contact component
@@ -12,7 +14,7 @@ const Contact = ({ onclick, contact }) => {
   const { id, name, cellphone } = contact;
   return (
     <li className="contact" key={id} onClick={onclick}>
-      <span className="initialName" style={setColor()}>
+      <span className="initialName" style={{ backgroundColor: setColor() }}>
         {name.substr(0, 1) || "C"}
       </span>
       <p className="contactData">
