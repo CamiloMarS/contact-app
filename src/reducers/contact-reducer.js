@@ -5,10 +5,13 @@
  */
 
 import initialState from "../state"; //Estado inicialde la aplicacion
+//import { makeActionCreator } from "redux-toolbelt"; //Reduce el código de reducers
+
 import {
   ADD_CONTACT,
   SEARCH_CONTACT,
-  REMOVE_CONTACT
+  REMOVE_CONTACT,
+  OPEN_MODAL_FORM
 } from "../actions/typeActions";
 
 /* El "reducer" recibe el estado inicial y la accion a ejecutar */
@@ -39,6 +42,13 @@ const contactReducer = (state = initialState, action) => {
           //... Eliminar el elemento coincidente...
           return contact.id !== action.idContact;
         })
+      });
+    }
+    case OPEN_MODAL_FORM: {
+      return Object.assign({}, state, {
+        ui: {
+          openForm: action.open
+        }
       });
     }
     default: {

@@ -3,6 +3,8 @@ import "./styles.css";
 
 import { connect } from "react-redux";
 import { addContact } from "../../actions";
+import { Button } from "semantic-ui-react";
+
 class FormNewUser extends React.Component {
   constructor(props) {
     super(props);
@@ -12,9 +14,7 @@ class FormNewUser extends React.Component {
   }
 
   clearInputs = (...inputs) => {
-    inputs.map(input => {
-      input.current.value = null;
-    });
+    inputs.map(input => (input.current.value = null));
   };
 
   sendDataContactAndClear = () => {
@@ -37,7 +37,6 @@ class FormNewUser extends React.Component {
   render() {
     return (
       <div className="content-form-newContact">
-        <h3>Nuevo empleado</h3>
         <input
           type="text"
           placeholder="Nombre contacto"
@@ -50,12 +49,9 @@ class FormNewUser extends React.Component {
           ref={this.contactCellphone}
           className="controlInput"
         />
-        <button
-          className="btnRegisterContact"
-          onClick={this.sendDataContactAndClear}
-        >
+        <Button primary color="blue" onClick={this.sendDataContactAndClear}>
           Registrar
-        </button>
+        </Button>
       </div>
     );
   }

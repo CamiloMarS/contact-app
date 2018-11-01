@@ -2,9 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import Contact from "../Contact";
 
+const styles = {
+  list: {
+    width: "80%",
+    margin: "0 auto"
+  }
+};
+
 const ContactsList = ({ contacts, onContactsClick }) => {
   return (
-    <ul>
+    <ul style={styles.list}>
       {/** Contact List */}
       {contacts.map(contact => (
         <Contact
@@ -18,7 +25,6 @@ const ContactsList = ({ contacts, onContactsClick }) => {
 };
 
 ContactsList.propTypes = {
-  //...
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,

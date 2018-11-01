@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-
 import "./Contact.css";
+import ButtonDelete from "../Button-Delete";
 
 //Contact component
 const setColor = () => {
@@ -13,7 +13,7 @@ const setColor = () => {
 const Contact = ({ onclick, contact }) => {
   const { id, name, cellphone } = contact;
   return (
-    <li className="contact" key={id} onClick={onclick}>
+    <li className="contact" key={id}>
       <span className="initialName" style={{ backgroundColor: setColor() }}>
         {name.substr(0, 1) || "C"}
       </span>
@@ -21,6 +21,7 @@ const Contact = ({ onclick, contact }) => {
         <span>{name}</span>
         <span>{cellphone}</span>
       </p>
+      <ButtonDelete deleteFuncttion={onclick} />
     </li>
   );
 };
