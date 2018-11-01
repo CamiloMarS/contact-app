@@ -5,19 +5,24 @@
  */
 
 import initialState from "../state"; //Estado inicialde la aplicacion
+import {
+  ADD_CONTACT,
+  SEARCH_CONTACT,
+  REMOVE_CONTACT
+} from "../actions/typeActions";
 
 /* El "reducer" recibe el estado inicial y la accion a ejecutar */
 
 const contactReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD_CONTACT": {
+    case ADD_CONTACT: {
       // Crear un nuevo contacto
       return Object.assign({}, state, {
         contacts: [...state.contacts, { ...action.newContact }]
       });
     }
 
-    case "SEARCH_CONTACT": {
+    case SEARCH_CONTACT: {
       // Buscar el id
       return Object.assign({}, state, {
         search: action.search,
@@ -28,7 +33,7 @@ const contactReducer = (state = initialState, action) => {
         })
       });
     }
-    case "REMOVE_CONTACT": {
+    case REMOVE_CONTACT: {
       return Object.assign({}, state, {
         contacts: state.contacts.filter(contact => {
           //... Eliminar el elemento coincidente...

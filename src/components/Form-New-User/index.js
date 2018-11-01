@@ -25,7 +25,7 @@ class FormNewUser extends React.Component {
     ) {
       this.props.dispatch(
         addContact({
-          id: Math.random() * (10000000 - 1) + 1,
+          id: Math.trunc(Math.random() * (10000000 - 1) + 1),
           name: contactName.current.value,
           cellphone: contactCellphone.current.value
         })

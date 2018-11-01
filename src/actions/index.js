@@ -1,10 +1,12 @@
 /* Actions Contact App */
 
 /** Actions Type */
-const ADD_CONTACT = "ADD_CONTACT";
-const SEARCH_CONTACT = "SEARCH_CONTACT";
-const REMOVE_CONTACT = "REMOVE_CONTACT";
-const SHOW_CONTACT_LIST = "SHOW_CONTACT_LIST";
+import {
+  ADD_CONTACT,
+  SEARCH_CONTACT,
+  REMOVE_CONTACT,
+  SHOW_CONTACT_LIST
+} from "./typeActions.js";
 
 /* Creator of actions */
 const addContact = newContact => {
