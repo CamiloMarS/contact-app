@@ -11,6 +11,10 @@ import { connect } from "react-redux";
 import { openForm, searchContact, removeContact } from "../../actions";
 
 class ContentMain extends Component {
+  componentDidMount() {
+    console.log("MESSAGE ==> Cmponente montado!");
+  }
+
   //Metodo para abrir la modal
   openFormContact = () => {
     const valueCurrent = this.props.openForm;
@@ -75,5 +79,6 @@ export default connect(mapStateProps)(ContentMain);
 
 /**
  *
- * redux toolbet
+ * redux toolbelt
+ * redux sagga
  */
