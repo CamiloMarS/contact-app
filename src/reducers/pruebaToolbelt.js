@@ -1,10 +1,7 @@
-/**
- * CREAR EL REDUCER CON REDUX-TOOLNELT
- */
+/* CREAR EL REDUCER CON REDUX-TOOLNELT */
 
 import initialState from "../state";
-//import { makeReducer } from "redux-toolbelt";
-
+import { makeReducer } from "redux-toolbelt";
 import {
   addContact,
   searchContact,
@@ -12,47 +9,50 @@ import {
   openForm
 } from "../actions/toolbelt";
 
-const contactReducer = (state = initialState, { payload, type }) => {
-  switch (type) {
-    //Add new contact
-    case addContact.TYPE: {
+const contactReducer = makeReducer(
+  {
+    [addContact.TYPE]: (state, { payload }) => {
+      //Crear un nuevo contacto
+      console.log("TOOLBELT NEW  ==> ", payload);
       return Object.assign({}, state, {
-        contacts: [...state.contacts, { ...payload }]
+        contacts: [...state.contacts, { ...payload.newContact }]
       });
-    }
-    //Return the world to search and the result if exists
-    case searchContact.TYPE: {
+    },
+    [removeContact.TYPE]: (state, { payload }) => {
+      //Eliminar un contacto
+      console.log("TOOLBELT REMOVE ==>", payload);
+
       return Object.assign({}, state, {
-        search: payload.search,
-        result: state.contacts.filter(contact => {
-          return contact.name
-            .toLowerCase()
-            .includes(payload.search.toLowerCase());
-        })
-      });
-    }
-    //Remove the contact searched
-    case removeContact.TYPE: {
-      return Object.assign({}, state, {
-        //Ignorar el contacto que tenga el id buscado
         contacts: state.contacts.filter(contact => {
-          return contact.id !== payload.idContact;
+          return contact.id !== payload;
         })
       });
-    }
-    //Open the modal
-    case openForm.TYPE: {
+    },
+    [searchContact.TYPE]: (state, { payload }) => {
+      //Buscar el contacto
+      console.log("TOOLBELT SEARCH ==>", payload);
+      if (payload.search !== "") {
+        return Object.assign({}, state, {
+          search: payload,
+          result: state.contacts.filter(contact => {
+            return contact.name
+              .toLowerCase()
+              .includes(payload.search.toLowerCase());
+          })
+        });
+      } else return { ...state, search: "", result: [] };
+    },
+    [openForm.TYPE]: (state, { payload }) => {
+      //Abrir/Cerrar la modal del formulario
+      console.log("TOOLBELT OPEN-FORM ==>", payload);
       return Object.assign({}, state, {
         ui: {
           openForm: payload.open
         }
       });
     }
+  },
+  { defaultState: initialState } //Estado por defecto
+);
 
-    //Return the state initial
-    default: {
-      return state;
-    }
-  } //end switch
-}; //end reducer
-export default { contactReducer };
+export default contactReducer;

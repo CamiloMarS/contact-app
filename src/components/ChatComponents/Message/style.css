@@ -1,0 +1,7 @@
+.message {
+  width: 150px;
+  border-radius: 65px 200px 0px 65px;
+  -moz-border-radius: 65px 200px 0px 65px;
+  -webkit-border-radius: 65px 200px 0px 65px;
+  border: 0px outset #000000;
+}

@@ -5,20 +5,42 @@ import FormNewUser from "../../components/Form-New-User";
 import ModalForm from "../../components/Modal";
 import InputSearch from "../../components/Input-Search";
 import { Button } from "semantic-ui-react";
+//import MessageContainer from "../MessagesContainers";
+import Footer from "../../components/Footer";
+import Axios from "axios";
 
 //Probar redux
 import { connect } from "react-redux";
-import { openForm, searchContact, removeContact } from "../../actions";
+
+//Accciones de redux toolbelt
+import { searchContact, removeContact, openForm } from "../../actions/toolbelt";
 
 class ContentMain extends Component {
   componentDidMount() {
-    console.log("MESSAGE ==> Cmponente montado!");
-  }
+    console.log("MESSAGE ==> Componente montado!");
+    //REalizar la llamada a la Api
+    const options = {
+      method: "get",
+      url: "http://redux.getsandbox.com/contacts"
+    };
 
+    const request = () => {
+      return Axios(options).then(response => {
+        return response;
+      });
+    };
+
+    async function example() {
+      const data = await request();
+      return data;
+    }
+
+    console.log(example());
+  }
   //Metodo para abrir la modal
   openFormContact = () => {
     const valueCurrent = this.props.openForm;
-    console.log("OPEN FORM ==> ", valueCurrent);
+    console.log("OPEN FORM ==> ", !valueCurrent);
     this.props.dispatch(openForm(!valueCurrent));
   };
 
@@ -42,8 +64,12 @@ class ContentMain extends Component {
 
   render() {
     return (
-      <div>
-        <Header title="Contacts App">
+      <div
+        style={{
+          backgroundColor: "#e0e0e0"
+        }}
+      >
+        <Header title="">
           <Button color="facebook" icon="plus" onClick={this.openFormContact} />
           <InputSearch getTextToSearch={this.searchContactByName} />
         </Header>
@@ -56,6 +82,10 @@ class ContentMain extends Component {
           }
           onContactsClick={this.deleteContact}
         />
+
+        {/*<MessageContainer />*/}
+
+        <Footer company={"Sngular"} phrase={"It can be done."} />
 
         <ModalForm open={this.props.openForm} close={this.closeContactForm}>
           <FormNewUser />

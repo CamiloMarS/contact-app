@@ -2,8 +2,9 @@ import React from "react";
 import "./styles.css";
 
 import { connect } from "react-redux";
-import { addContact } from "../../actions";
+//import { addContact } from "../../actions";
 import { Button } from "semantic-ui-react";
+import { addContact } from "../../actions/toolbelt";
 
 class FormNewUser extends React.Component {
   constructor(props) {

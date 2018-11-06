@@ -18,7 +18,7 @@ const Contact = ({ onclick, contact }) => {
         {name.substr(0, 1) || "C"}
       </span>
       <p className="contactData">
-        <span>{name}</span>
+        <span className="fullname">{name}</span>
         <span>{cellphone}</span>
       </p>
       <ButtonDelete deleteFuncttion={onclick} />

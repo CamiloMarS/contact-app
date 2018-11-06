@@ -1,8 +1,10 @@
 .contact {
+  width: 300px;
   display: flex;
   align-items: center;
-  background: #72bdff;
-  margin: 1px;
+  background: #fff;
+  margin: 4px 0;
+  border-radius: 0 100px 100px 0px;
 }
 
 .initialName {
@@ -22,6 +24,10 @@
 .contactData {
   display: flex;
   flex-direction: column;
-  padding: 5px;
-  color: #fff;
+  color: #6d6d6d;
+}
+
+.fullname {
+  margin-top: 7px;
+  font-weight: bolder;
 }

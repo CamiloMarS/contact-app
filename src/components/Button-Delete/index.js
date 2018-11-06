@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const styles = {
   buttonStyles: {
     position: "absolute",
-    right: "15%"
+    right: "40%"
   }
 };
 
