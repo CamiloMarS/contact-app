@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Container } from "semantic-ui-react";
 import DataContact from "../../components/ChatComponents/DataContact";
 import Message from "../../components/ChatComponents/Message";
+import InputMessage from "../../components/ChatComponents/InputMessage";
+import { connect } from "react-redux";
 
 class MessageContainer extends Component {
   //Here is constructor
@@ -11,33 +13,34 @@ class MessageContainer extends Component {
   };
 
   render() {
-    const styles = {
-      content: {
-        backgroundColor: "#e0e0e0",
-        boxShadow: "1px 1px 2px #ccc",
-        width: "350px !important",
-        maxWidth: "400px"
-      }
-    };
-
+    const { name, cellphone } = this.props.conversation.contact;
     return (
       /** Container chat messages */
-      <Container fluid style={styles.content}>
+      <Container fluid style={{ backgroundColor: "#ccc" }}>
         <DataContact
-          contactName={"Camilo Salazar"}
+          contactName={name}
+          numberphone={cellphone}
           showOptionsButton={this.viewContactOptions}
         />
         <div>
           <Message
             person="Yo"
-            text="Aunque pueden ocurrir una tras otra."
+            text="Aunque pueden ocurrir más sucesos."
             position="left"
           />
           <Message person="Otro" text="Texto de prueba" position="right" />
         </div>
+        <InputMessage />
       </Container>
     );
   }
 } //end class
 
-export default MessageContainer;
+//conectar redux con react
+const mapStateProps = function(store) {
+  return {
+    conversation: store.conversation
+  };
+};
+
+export default connect(mapStateProps)(MessageContainer);

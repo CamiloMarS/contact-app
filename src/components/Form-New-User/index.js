@@ -3,7 +3,7 @@ import "./styles.css";
 
 import { connect } from "react-redux";
 //import { addContact } from "../../actions";
-import { Button } from "semantic-ui-react";
+import { Button, Icon } from "semantic-ui-react";
 import { addContact } from "../../actions/toolbelt";
 
 class FormNewUser extends React.Component {
@@ -38,19 +38,23 @@ class FormNewUser extends React.Component {
   render() {
     return (
       <div className="content-form-newContact">
+        <Icon name="user" />
         <input
           type="text"
           placeholder="Nombre contacto"
           ref={this.contactName}
           className="controlInput"
         />
+        <br />
+        <Icon name="phone" />
         <input
           type="text"
           placeholder="Número telefonico"
           ref={this.contactCellphone}
           className="controlInput"
         />
-        <Button primary color="blue" onClick={this.sendDataContactAndClear}>
+        <br />
+        <Button primary color="twitter" onClick={this.sendDataContactAndClear}>
           Registrar
         </Button>
       </div>

@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 
 const styles = {
   buttonStyles: {
-    position: "absolute",
-    right: "40%"
+    marginLeft: "30%",
+    right: 0
   }
 };
 
@@ -14,6 +14,7 @@ const ButtonDelete = ({ deleteFuncttion }) => {
     <Button
       circular
       icon="trash"
+      color="google plus"
       onClick={deleteFuncttion}
       style={styles.buttonStyles}
     />

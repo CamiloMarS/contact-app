@@ -8,15 +8,18 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "3px 10px",
+    padding: "10px",
     backgroundColor: "#fff"
   }
 };
 
-const DataContact = ({ contactName, showOptionsButton }) => (
+const DataContact = ({ contactName, numberphone, showOptionsButton }) => (
   <div style={styles.segment}>
     <div>
-      <Icon name="user" color="blue" /> {contactName}
+      <Icon name="user" color="blue" />{" "}
+      <span>
+        {contactName} - {numberphone}
+      </span>
     </div>
     <div>
       <ButtonOptions actionFunction={showOptionsButton} />
@@ -26,6 +29,7 @@ const DataContact = ({ contactName, showOptionsButton }) => (
 
 DataContact.propTypes = {
   contactName: PropTypes.string.isRequired,
+  numberphone: PropTypes.string.isRequired,
   showOptionsButton: PropTypes.func.isRequired
 };
 

@@ -43,7 +43,28 @@ const openForm = makeActionCreator(
   })
 );
 
-/**
- * Exportar las acciones
- */
-export { addContact, searchContact, removeContact, showContact, openForm };
+const viewConversation = makeActionCreator(
+  "VIEW_CONVERSATION",
+  (openConversation, debug = false) => ({
+    payload: { openConversation },
+    meta: { debug }
+  })
+);
+
+const viewDetailsContact = makeActionCreator(
+  "VIEW_DETAILS_CONTACT",
+  (contact, debug = false) => ({
+    payload: { contact },
+    meta: { debug }
+  })
+);
+
+export {
+  addContact,
+  searchContact,
+  removeContact,
+  showContact,
+  openForm,
+  viewConversation,
+  viewDetailsContact
+};

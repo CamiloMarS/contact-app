@@ -6,7 +6,8 @@ import {
   addContact,
   searchContact,
   removeContact,
-  openForm
+  openForm,
+  viewDetailsContact
 } from "../actions/toolbelt";
 
 const contactReducer = makeReducer(
@@ -21,7 +22,6 @@ const contactReducer = makeReducer(
     [removeContact.TYPE]: (state, { payload }) => {
       //Eliminar un contacto
       console.log("TOOLBELT REMOVE ==>", payload);
-
       return Object.assign({}, state, {
         contacts: state.contacts.filter(contact => {
           return contact.id !== payload;
@@ -48,6 +48,18 @@ const contactReducer = makeReducer(
       return Object.assign({}, state, {
         ui: {
           openForm: payload.open
+        }
+      });
+    },
+    [viewDetailsContact.TYPE]: (state, { payload }) => {
+      console.log("TOOLBELT VIEW DETAILS ==> ", payload);
+      return Object.assign({}, state, {
+        conversation: {
+          contact: {
+            name: payload.name,
+            cellphone: payload.cellphone,
+            messages: [...payload.messages]
+          }
         }
       });
     }

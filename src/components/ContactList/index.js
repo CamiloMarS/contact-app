@@ -4,8 +4,9 @@ import Contact from "../Contact";
 
 const styles = {
   list: {
-    width: "80%",
-    margin: "0 auto"
+    width: "100%",
+    margin: "0 auto",
+    padding: "3px"
   }
 };
 

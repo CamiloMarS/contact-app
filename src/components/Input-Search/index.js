@@ -23,8 +23,7 @@ class InputSearch extends React.Component {
     //Styles for this component
     const styles = {
       content: {
-        backgroundColor: "#ccc",
-        padding: "5px",
+        backgroundColor: "transparent",
         display: "flex",
         justifyContent: "space-around",
         minWidth: "250px"
@@ -34,8 +33,13 @@ class InputSearch extends React.Component {
     //Recibir una función en los props
     return (
       <div style={styles.content}>
-        <input type="text" placeholder="Search contact" ref={this.searchText} />
-        <Button primary onClick={this.sendTextToSearch} icon="search" />
+        <input
+          type="text"
+          placeholder="Search contact"
+          ref={this.searchText}
+          style={{ border: "none" }}
+        />
+        <Button color="twitter" onClick={this.sendTextToSearch} icon="search" />
       </div>
     );
   }
