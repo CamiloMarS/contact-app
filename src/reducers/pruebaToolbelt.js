@@ -9,7 +9,8 @@ import {
   openForm,
   viewDetailsContact,
   getConversationContact,
-  sendMessage
+  sendMessage,
+  deleteConversation
 } from "../actions/toolbelt";
 
 const contactReducer = makeReducer(
@@ -67,8 +68,8 @@ const contactReducer = makeReducer(
         id
       );
       if (existsConversationTheContact) {
-        //console.log(state.conversations[`${id}`].history);
         return Object.assign({}, state, {
+          ...state,
           conversationActive: {
             contact: {
               ...state.conversationActive.contact,
@@ -76,29 +77,48 @@ const contactReducer = makeReducer(
             }
           }
         });
+      } else {
+        return state;
       }
-      // return Object.assign({}, state, {
-      //   conversationActive: {
-      //     contact: {
-      //       ...state.conversationActive.contact,
-      //       messages: (() => {
-      //         const result = state.conversations.filter(
-      //           item => item.contactId === id
-      //         );
-
-      //         if (result !== "undefined" && result.length > 0) {
-      //           const { history } = result[0];
-      //           return history;
-      //         } else return [];
-      //       })()
-      //     }
-      //   }
-      // });
     },
     [sendMessage.TYPE]: (state, { payload }) => {
       const { destiny, contactName, text, type, when } = payload;
-      //...
-      console.log({ ...state });
+      if (state.conversations.hasOwnProperty(destiny)) {
+        //agregar el mensaje a la conversación existente
+        return Object.assign({}, state, {
+          conversations: {
+            ...state.conversations,
+            [destiny]: {
+              history: [
+                ...state.conversations[destiny].history,
+                { type, contactName, text, when }
+              ]
+            }
+          }
+        });
+      } else {
+        //Iniciar una nueva conversación
+        return {
+          ...state,
+          conversations: {
+            ...state.conversations,
+            [destiny]: {
+              history: [{ type, contactName, text, when }]
+            }
+          }
+        };
+      }
+    },
+    [deleteConversation.TYPE]: (state, { payload }) => {
+      //Recorrer la lista de conversaciones y excluir la que se quiera eliminar
+      const { idContact } = payload;
+      delete state.conversations[idContact];
+      return {
+        ...state,
+        conversations: {
+          ...state.conversations
+        }
+      };
     }
   },
   { defaultState: initialState } //Estado por defecto

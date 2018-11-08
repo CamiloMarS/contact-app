@@ -9,7 +9,8 @@ class InputMessage extends React.Component {
 
   getMessage = () => {
     const input = this["messageWritting"]["inputRef"]["value"]; //Obtiene el value del input
-    this.props.getNewMessage({ text: input, when: new Date() });
+    if (input.length > 0)
+      this.props.getNewMessage({ text: input, when: new Date() });
   };
 
   render() {

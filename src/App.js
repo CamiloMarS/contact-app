@@ -4,15 +4,8 @@ import Footer from "./components/Footer";
 //Importar los contenedores de la aplicación
 import ContentMain from "./containers/main";
 import MessageContainer from "./containers/MessagesContainers";
-//const pusher = require("./Pusher/config.js");
 
 class App extends Component {
-  // componentDidMount() {
-  //   pusher.trigger("my-chanel", "my-event", {
-  //     message: "Hello World from C-You!"
-  //   });
-  // }x
-
   render() {
     //Estilos generales
     return (

@@ -67,6 +67,14 @@ const sendMessage = makeActionCreator(
   })
 );
 
+const deleteConversation = makeActionCreator(
+  "DELETE_CONVERSATION",
+  (idContact, debug = false) => ({
+    payload: { idContact },
+    meta: debug
+  })
+);
+
 export {
   addContact,
   searchContact,
@@ -75,5 +83,6 @@ export {
   openForm,
   viewDetailsContact,
   getConversationContact,
-  sendMessage
+  sendMessage,
+  deleteConversation
 };

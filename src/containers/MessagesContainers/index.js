@@ -5,12 +5,25 @@ import MessageList from "../../components/ChatComponents/MessagesList";
 import InputMessage from "../../components/ChatComponents/InputMessage";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { sendMessage } from "../../actions/toolbelt";
+import {
+  sendMessage,
+  getConversationContact,
+  deleteConversation
+} from "../../actions/toolbelt";
+import ListEmojis from "../../components/ChatComponents/ListEmojis";
 
 class MessageContainer extends Component {
   //Opciones de la conversacion del contacto
   viewContactOptions = () => {
-    console.log("VIEW OPTIONS ");
+    const {
+      conversation: {
+        contact: { id }
+      },
+      deleteConversation,
+      getConversationContact
+    } = this.props;
+    deleteConversation(id);
+    getConversationContact(id);
   };
 
   /** Agregar nuevo mensaje a la conversación */
@@ -23,11 +36,13 @@ class MessageContainer extends Component {
       destiny
     };
     this.props.newMessage(addFormToNewMessage);
+    this.props.getConversationContact(destiny);
   };
 
   render() {
     //Detalles del empleado
     const { name, cellphone, messages } = this.props.conversation.contact;
+
     return (
       /** Contenedor de los mensajes */
       <Container fluid style={{ backgroundColor: "#ccc" }}>
@@ -36,10 +51,10 @@ class MessageContainer extends Component {
           numberphone={cellphone}
           showOptionsButton={this.viewContactOptions}
         />
-        {console.log(messages)}
-        {/* <MessageList listMessages={messages}>
+        <MessageList listMessages={messages} nameContact={name}>
           <InputMessage getNewMessage={this.sendNewMessage} />
-        </MessageList> */}
+          <ListEmojis />
+        </MessageList>
       </Container>
     );
   }
@@ -56,7 +71,9 @@ const mapStateProps = function(store) {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     {
-      newMessage: sendMessage
+      newMessage: sendMessage,
+      getConversationContact: getConversationContact,
+      deleteConversation: deleteConversation
     },
     dispatch
   );

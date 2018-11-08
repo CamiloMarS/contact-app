@@ -9,8 +9,7 @@ const styles = {
 };
 
 const options = [
-  { key: "", text: "", icon: "" },
-  { key: "details", text: "Details", icon: "info" },
+  { key: 0, text: "Opciones" },
   { key: "delete", text: "Delete conversation", icon: "delete" }
 ];
 
@@ -18,7 +17,7 @@ const ButtonOptions = ({ actionFunction }) => {
   return (
     <Dropdown
       style={styles.circle}
-      onClick={actionFunction}
+      onChange={actionFunction}
       options={options}
       pointing="top right"
       icon="ellipsis vertical"

@@ -18,15 +18,19 @@ import {
 class ContentMain extends Component {
   componentDidMount() {
     //Agregar los contactos al store
-    getContacts().then(res => {
-      const data = res.data["data"];
-      if (data.length > 0) {
-        const { addNewContact } = this.props;
-        data.forEach(result => {
-          addNewContact(result);
-        });
-      }
-    });
+    getContacts()
+      .then(res => {
+        const data = res.data["data"];
+        if (data.length > 0) {
+          const { addNewContact } = this.props;
+          data.forEach(result => {
+            addNewContact(result);
+          });
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   } //end componentDidMount
 
   //Metodo para abrir la modal
