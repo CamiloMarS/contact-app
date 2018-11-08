@@ -18,7 +18,7 @@ const DataContact = ({ contactName, numberphone, showOptionsButton }) => (
     <div>
       <Icon name="user" color="blue" />{" "}
       <span>
-        {contactName} - {numberphone}
+        {contactName} {numberphone}
       </span>
     </div>
     <div>

@@ -43,18 +43,26 @@ const openForm = makeActionCreator(
   })
 );
 
-const viewConversation = makeActionCreator(
-  "VIEW_CONVERSATION",
-  (openConversation, debug = false) => ({
-    payload: { openConversation },
-    meta: { debug }
-  })
-);
-
 const viewDetailsContact = makeActionCreator(
   "VIEW_DETAILS_CONTACT",
   (contact, debug = false) => ({
     payload: { contact },
+    meta: { debug }
+  })
+);
+
+const getConversationContact = makeActionCreator(
+  "SEARCH_CONTACT_CONVERSATION",
+  (idContact, debug = false) => ({
+    payload: { idContact },
+    meta: { debug }
+  })
+);
+
+const sendMessage = makeActionCreator(
+  "SEND_MESSAGE",
+  (data, debug = false) => ({
+    payload: data,
     meta: { debug }
   })
 );
@@ -65,6 +73,7 @@ export {
   removeContact,
   showContact,
   openForm,
-  viewConversation,
-  viewDetailsContact
+  viewDetailsContact,
+  getConversationContact,
+  sendMessage
 };

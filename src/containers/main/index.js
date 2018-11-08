@@ -59,7 +59,8 @@ class ContentMain extends Component {
         style={{
           backgroundColor: "whitesmoke",
           textAlign: "center",
-          borderRight: "1px solid #ccc"
+          borderRight: "1px solid #ccc",
+          minHeight: "80vh"
         }}
       >
         <Header title="Contactos">
@@ -72,7 +73,6 @@ class ContentMain extends Component {
           onClick={this.openFormContact}
           style={{ margin: "2px" }}
         />
-
         <ContactList
           contacts={
             this.props.resultSearch.length > 0
@@ -91,7 +91,6 @@ class ContentMain extends Component {
 } //End class
 
 const mapStateProps = function(store) {
-  ///...
   return {
     contacts: store.contacts,
     openForm: store.ui.openForm,

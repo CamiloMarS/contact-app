@@ -3,28 +3,28 @@ import PropTypes from "prop-types";
 
 const Message = ({ person, text, position }) => {
   let pos =
-    position === "left"
-      ? { position: "relative", left: "10px" }
-      : { position: "relative", right: "0px" };
+    position === "destiny"
+      ? { borderRadius: "100px 0 0 100px", textAlign: "right", right: 0 }
+      : {
+          borderRadius: "0 100px 100px 0px"
+        };
 
   return (
     //Dialogo
     <div
-      className="message"
       style={{
-        width: "100%"
+        padding: "5px",
+        margin: "4px",
+        width: "100%",
+        position: "relative"
       }}
     >
       <div
         style={{
-          maxWidth: "80%",
-          minWidth: "20%",
-          width: "250xp !important",
-          borderRadius: "0 100px 100px 0px",
+          ...pos,
           backgroundColor: "#fff",
           padding: "5px",
-          margin: "4px",
-          ...pos
+          maxWidth: "200px"
         }}
       >
         <span

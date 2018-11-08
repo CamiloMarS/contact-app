@@ -7,21 +7,21 @@ import {
   searchContact,
   removeContact,
   openForm,
-  viewDetailsContact
+  viewDetailsContact,
+  getConversationContact,
+  sendMessage
 } from "../actions/toolbelt";
 
 const contactReducer = makeReducer(
   {
     [addContact.TYPE]: (state, { payload }) => {
       //Crear un nuevo contacto
-      console.log("TOOLBELT NEW  ==> ", payload);
       return Object.assign({}, state, {
         contacts: [...state.contacts, { ...payload.newContact }]
       });
     },
     [removeContact.TYPE]: (state, { payload }) => {
       //Eliminar un contacto
-      console.log("TOOLBELT REMOVE ==>", payload);
       return Object.assign({}, state, {
         contacts: state.contacts.filter(contact => {
           return contact.id !== payload;
@@ -30,7 +30,6 @@ const contactReducer = makeReducer(
     },
     [searchContact.TYPE]: (state, { payload }) => {
       //Buscar el contacto
-      console.log("TOOLBELT SEARCH ==>", payload);
       if (payload.search !== "") {
         return Object.assign({}, state, {
           search: payload,
@@ -44,7 +43,6 @@ const contactReducer = makeReducer(
     },
     [openForm.TYPE]: (state, { payload }) => {
       //Abrir/Cerrar la modal del formulario
-      console.log("TOOLBELT OPEN-FORM ==>", payload);
       return Object.assign({}, state, {
         ui: {
           openForm: payload.open
@@ -52,16 +50,55 @@ const contactReducer = makeReducer(
       });
     },
     [viewDetailsContact.TYPE]: (state, { payload }) => {
-      console.log("TOOLBELT VIEW DETAILS ==> ", payload);
+      const { id, name, cellphone } = payload.contact;
       return Object.assign({}, state, {
-        conversation: {
+        conversationActive: {
           contact: {
-            name: payload.name,
-            cellphone: payload.cellphone,
-            messages: [...payload.messages]
+            id: id,
+            name: name,
+            cellphone: cellphone
           }
         }
       });
+    },
+    [getConversationContact.TYPE]: (state, { payload }) => {
+      let id = payload["idContact"];
+      const existsConversationTheContact = state.conversations.hasOwnProperty(
+        id
+      );
+      if (existsConversationTheContact) {
+        //console.log(state.conversations[`${id}`].history);
+        return Object.assign({}, state, {
+          conversationActive: {
+            contact: {
+              ...state.conversationActive.contact,
+              messages: state.conversations[`${id}`].history
+            }
+          }
+        });
+      }
+      // return Object.assign({}, state, {
+      //   conversationActive: {
+      //     contact: {
+      //       ...state.conversationActive.contact,
+      //       messages: (() => {
+      //         const result = state.conversations.filter(
+      //           item => item.contactId === id
+      //         );
+
+      //         if (result !== "undefined" && result.length > 0) {
+      //           const { history } = result[0];
+      //           return history;
+      //         } else return [];
+      //       })()
+      //     }
+      //   }
+      // });
+    },
+    [sendMessage.TYPE]: (state, { payload }) => {
+      const { destiny, contactName, text, type, when } = payload;
+      //...
+      console.log({ ...state });
     }
   },
   { defaultState: initialState } //Estado por defecto

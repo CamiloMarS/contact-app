@@ -7,8 +7,9 @@ class InputMessage extends React.Component {
     this.messageWritting = React.createRef();
   }
 
-  getMessage = text => {
-    console.log(text.value);
+  getMessage = () => {
+    const input = this["messageWritting"]["inputRef"]["value"]; //Obtiene el value del input
+    this.props.getNewMessage({ text: input, when: new Date() });
   };
 
   render() {
@@ -16,15 +17,16 @@ class InputMessage extends React.Component {
       <div
         style={{
           display: "flex",
-          justifyContent: "space-between"
+          justifyContent: "space-around",
+          position: "relative"
         }}
       >
         <Input
           type="text"
-          placeholder="Mi increible mensaje"
-          style={{ width: "89%" }}
+          placeholder="Mi fabuloso mensaje..."
+          style={{ width: "90%" }}
           size="tiny"
-          onChange={this.getMessage}
+          ref={input => (this.messageWritting = input)}
         />
         <Button circular icon="send" onClick={this.getMessage} />
       </div>
